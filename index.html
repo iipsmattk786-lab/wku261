@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>K-App Guide</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Animated Blobs -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Main Mobile App Container -->
+    <div class="app-container">
+        
+        <!-- Header -->
+        <header class="glass-header">
+            <div class="logo">
+                <span style="font-size: 1.5rem;">📱</span>
+                <h1>K-App Guide</h1>
+            </div>
+            <select id="langSelect">
+                <option value="en">English</option>
+                <option value="ko">한국어</option>
+                <option value="zh">中文</option>
+            </select>
+        </header>
+
+        <!-- View 1: Main Category Dashboard -->
+        <section id="view-dashboard" class="view active">
+            <div class="hero">
+                <h2 id="heroTitle">Explore Korea's Best Apps</h2>
+                <p id="heroSubtitle">Master essential life services with our easy step-by-step guides.</p>
+            </div>
+            <div class="section-title" id="categoryTitle">Select a Category</div>
+            <div class="category-grid" id="categoryGrid">
+                <!-- Categories injected by JS -->
+            </div>
+        </section>
+
+        <!-- View 2: App List inside a Category -->
+        <section id="view-app-list" class="view">
+            <button class="back-btn" onclick="goBackToDashboard()">
+                <span>←</span> <span id="lblBackToList">Back to Categories</span>
+            </button>
+            <div class="section-title" id="appListTitle">Apps</div>
+            <div class="app-list" id="appListContainer">
+                <!-- Apps injected by JS -->
+            </div>
+        </section>
+
+        <!-- View 3: App Detail & Tutorials -->
+        <section id="view-app-detail" class="view">
+            <button class="back-btn" onclick="goBackToAppList()">
+                <span>←</span> <span id="lblBackToApps">Back</span>
+            </button>
+            
+            <div class="detail-header" id="appDetailHeader">
+                <!-- App Header injected by JS -->
+            </div>
+
+            <div class="section-title" id="lblTutorialsTitle">Tutorials</div>
+            <div class="tutorial-list" id="tutorialListContainer">
+                <!-- Tutorials injected by JS -->
+            </div>
+        </section>
+
+        <!-- View 4: Tutorial Viewer (Carousel) -->
+        <section id="view-tutorial" class="view">
+            <button class="back-btn" onclick="goBackToAppDetail()">
+                <span>←</span> <span id="lblExitTutorial">Exit Tutorial</span>
+            </button>
+
+            <div class="tutorial-viewer-container">
+                <div class="tutorial-image-container" id="tutorialImageContainer">
+                    <img id="tutorialImage" src="" alt="Tutorial Step">
+                    <div id="highlightBox" class="highlight-box"></div>
+                </div>
+                
+                <div class="tutorial-controls">
+                    <div class="step-indicator" id="stepIndicator">Step 1 of 3</div>
+                    <div class="tutorial-text" id="tutorialDesc">Description goes here</div>
+                    <div class="btn-group">
+                        <button class="btn btn-secondary" id="btnPrev" onclick="prevStep()">Prev</button>
+                        <button class="btn btn-primary" id="btnNext" onclick="nextStep()">Next</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Floating Glossary Button -->
+        <button class="fab-glossary" onclick="openGlossary()">
+            📚
+        </button>
+
+    </div>
+
+    <!-- Glossary Modal -->
+    <div class="modal-overlay" id="glossaryModal" onclick="closeGlossary(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2 id="modalTitle">Dictionary</h2>
+                <button class="modal-close" onclick="closeGlossary(event)">✕</button>
+            </div>
+            <input type="text" id="glossarySearch" class="glossary-search" placeholder="Search a word..." onkeyup="filterGlossary()">
+            <div class="glossary-list" id="glossaryList">
+                <!-- Glossary items injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Load Data and Logic -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
